@@ -35,7 +35,7 @@ class User(AbstractUser):
 class Calendar_Event(models.Model):
     name = models.CharField(max_length=100, blank=True, default='')
     event_date = models.DateField(auto_now_add=True)
-    time = models.DurationField(max_value=None, min_value=None)
+    # time = models.DurationField(max_value=None, min_value=None)
     update = models.DateTimeField(auto_now=True)
     location = models.CharField(max_length=120)
     decription = models.CharField(blank=True, max_length=300)
