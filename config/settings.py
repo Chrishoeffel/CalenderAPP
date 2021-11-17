@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 #Create a file named .env and Declare your environment variables for database in .env 
 # Make sure you don’t use quotations around strings.
-IS_POSTGRESQL = False # Set True if want to use PostgrSQL DB
+IS_POSTGRESQL = True # Set True if want to use PostgrSQL DB
 
 if IS_POSTGRESQL is True:
     
