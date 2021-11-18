@@ -46,12 +46,10 @@ class Profile(models.Model):
         verbose_name_plural = _('Profiles')
 class Calendar_Event(models.Model):
     name = models.ForeignKey(Profile, on_delete=models.CASCADE, serialize=True, max_length=100, blank=True)
-    event_date = models.DateField(auto_now_add=True)
-    time = models.DurationField(max_value=None, min_value=None)
-    update = models.DateTimeField(auto_now=True)
-    location = models.CharField(max_length=120)
-    decription = models.CharField(blank=True, max_length=300)
-    created = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
 
     def __str__(self):
         return self.name
