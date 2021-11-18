@@ -31,6 +31,7 @@ whitenoise = "*"
 heroku = "*"
 gunicorn = "*"
 dj-database-url = "*"
+django-heroku = "*"
 
 [dev-packages]
 
