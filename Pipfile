@@ -29,6 +29,8 @@ Pillow = "==8.3.2"
 PyYAML = "==5.4.1"
 whitenoise = "*"
 heroku = "*"
+gunicorn = "*"
+dj-database-url = "*"
 
 [dev-packages]
 

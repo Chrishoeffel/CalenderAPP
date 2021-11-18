@@ -100,6 +100,8 @@ if IS_POSTGRESQL is True:
         'default': {
             'ENGINE': env('DATABASE_ENGINE'),
             'NAME': env('DATABASE_NAME'),
+            'HOST': env('DATABASE_HOST'),
+            'PORT': env('DATABASE_PORT'),
         }
     }
 else:
