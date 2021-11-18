@@ -33,6 +33,7 @@ gunicorn = "*"
 dj-database-url = "*"
 django-heroku = "*"
 requests = "*"
+datetime = "*"
 
 [dev-packages]
 
