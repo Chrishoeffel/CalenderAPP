@@ -1,1 +1,1 @@
-web: gunicorn calanderAPP.wsgi --log-file -
+web: gunicorn calanderAPP.wsgi 

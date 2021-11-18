@@ -32,6 +32,7 @@ heroku = "*"
 gunicorn = "*"
 dj-database-url = "*"
 django-heroku = "*"
+requests = "*"
 
 [dev-packages]
 
