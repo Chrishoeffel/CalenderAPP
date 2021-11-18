@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+import dj_database_url
 import environ #import environ
 
 env = environ.Env() # Initialise environment variables
@@ -19,7 +19,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", '*'']
 
 # Application definition
 
@@ -190,3 +190,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", #if you have seprate react app
     "http://127.0.0.1:9000"
 ]
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
