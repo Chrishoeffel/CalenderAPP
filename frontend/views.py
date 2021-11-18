@@ -18,8 +18,8 @@ from .models import *
 from .utils import Calendar
 
 class CalendarView(generic.ListView):
-    model = Event
-    template_name = 'cal/calendar.html'
+    model = Calenday_Event
+    template_name = 'frontend/calendar.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
