@@ -15,8 +15,11 @@ from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from datetime import datetime, timedelta
+from calendar import HTMLCalendar, week
+from .models import Event
 
-from .models import Avatar
+from .models import Avatar, Calendar_Event
 from .permissions import IsSelf
 from .serializers import (
     AvatarSerializer,
@@ -81,3 +84,33 @@ class GuestRegistration(RegisterView):
         user.avatar = get_random_avatar()
         user.save()
         return user
+    
+class Calendar(HTMLCalendar):
+    def __init__(self, year=none, month=None):
+        self.year = year
+        self.month = month
+        super(Calendar, self).__init__()
+    def formatday(self, day, events):
+        events_per_day = events.filter(Start_time_day=day)
+        d = ""
+        for event in events_per_day:
+            d += f'<li> {event.title}</li>'
+        if day !=0:
+            return f"<td><span class='date'>{day}<ul> {d}</ul></td>"
+        return '<td></td>'
+    def formatweek(self,theweek, events):
+        week = ''
+        for d, weekday in theweek:
+            week += self.formatday(d, events)
+        return f'<td> {week} </td>'
+    
+    
+    def formatmonth(self, withyear=True):
+        events = Calendar_Event.objects.filter(start_time_year=self.year, start_time_month=self.month)
+        
+        cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
+        cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
+		cal += f'{self.formatweekheader()}\n'
+        for week in self.monthdays2calendar(self.year, self.month):
+			cal += f'{self.formatweek(week, events)}\n'
+		return cal
