@@ -1,1 +1,1 @@
-web: gunicorn calanderAPP.wsgi 
+web: gunicorn config.wsgi
