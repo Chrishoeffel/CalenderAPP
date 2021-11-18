@@ -1,0 +1,1 @@
+web: gunicorn calanderAPP.wsgi --log-file -
