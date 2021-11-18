@@ -9,12 +9,14 @@ from django.utils.translation import gettext_lazy as _
 
 class Avatar(models.Model):
     photo = models.ImageField(upload_to="avatars")
+    
 
     def __str__(self):
         return os.path.basename(self.photo.name)
 
 
 class User(AbstractUser):
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.cascade)
     username = models.CharField(
         _("username"),
         max_length=150,
@@ -32,13 +34,23 @@ class User(AbstractUser):
 
     class Meta:
         ordering = ["-id"]
+class Profile(models.Model):
+    
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30, blank=False)
+    last_name = models.CharField(max_length=30, blank=False)
+    email = models.EmailField(max_length=50, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)        
+
+    class Meta:
+        verbose_name = _('Profile')
+        verbose_name_plural = _('Profiles')
 class Calendar_Event(models.Model):
-    name = models.CharField(max_length=100, blank=True, default='')
-    event_date = models.DateField(auto_now_add=True)
-    # time = models.DurationField(max_value=None, min_value=None)
-    update = models.DateTimeField(auto_now=True)
-    location = models.CharField(max_length=120)
-    decription = models.CharField(blank=True, max_length=300)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

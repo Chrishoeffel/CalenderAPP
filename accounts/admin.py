@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Avatar, User
+from .models import Avatar, User, Profile, Calendar_Event
 
 
 class CustomUserAdmin(UserAdmin):
