@@ -32,7 +32,7 @@ class CalendarView(generic.ListView):
 
         # Call the formatmonth method, which returns our calendar as a table
         html_cal = cal.formatmonth(withyear=True)
-        context['calendar'] = mark_safe(html_cal)
+        context['calendar'] = make_safe(html_cal)
         return context
 
 def get_date(req_day):
